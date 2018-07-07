@@ -1,0 +1,103 @@
+<!Doctype html>
+<html lang="en">
+<head>
+<style>
+.container {
+    background-color: #f1f1f1;
+    padding: 20px;
+	
+} 
+</style>
+ <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+<div ng-controller="Controller" class="container">
+<div class="container">
+<h2>Form control: input</h2>
+ 
+<form >
+<div class="form-group">
+<label for="usr">Name:</label>
+<input type="text" ng-model="user.name" class="form-control" id="usr" placeholder="name" required>
+    </div>
+<div class="form-group">
+<label for="sel1">Colour:</label>
+<select ng-model="user.colour" class="form-control" id="sel1">
+<option ng-repeat="x in colours"value="{{x}}">{{x}}</option>
+   </select>
+   </div>
+<div class="form-group">
+<div class="form-check">
+<label class="form-check-label"><input type="checkbox" ng-model="user.born"
+ng-true-value="'true'" ng-false-value="'false'" class="form-check-input">When was Paruyr Sevak born in 1924?</label>
+   </div>
+   </div>
+<div class="form-group">
+<div class="form-check">
+<label class="form-check-label"><input type="checkbox" ng-model="user.happy"
+ng-true-value="'yes'" ng-false-value="'no'" class="form-check-input">Are you happy?</label>
+   </div>
+   </div>
+<div class="form-check-inline">
+<label class="form-check-label"><input type="radio"  ng-model="user.emails" value="yes" class="form-check-input">Email</label>
+   </div>
+<div class="form-check-inline">
+<label class="form-check-label"><input type="radio"  ng-model="user.emails" value="no" class="form-check-input"> Email </label>
+   </div>
+<div ng-if="user.emails=='yes'?true:false" class="form-group">
+<label>Email: <input type="email" ng-model="user.email" placeholder="email"required class="form-control"/></label>
+   </div>
+   
+<div class="form-group">
+<input type="Submit" ng-click="myFunc(user)" value="Submit" class="btn btn-primary"/>
+   </div>
+   </form>
+
+<div>
+<pre ng-style="myteg">{{users}}</pre>
+</div>
+<script>
+
+angular.module('myApp', [])
+.controller('Controller', ['$scope', function($scope) {
+$scope.colours= ["Red",
+       "Orange",
+       "Yellow",
+       "Green",
+       "Blue",
+       "Purple",
+       "Brown",
+	   "Black",
+       "White",
+       "Pink"];
+     $scope.users = {};
+     $scope.user={emails:'no'};
+     $scope.user={colour:'Red'};
+     $scope.myteg = {
+     "display":"none"
+  };
+       $scope.myFunc = function(user) {
+       $scope.users = angular.copy(user);
+       $scope.myteg = {
+   "display":"block",
+   "color" : "red",
+   "background-color" : "#e6e6ff",
+   "border":"5px solid #e6e6ff",
+   "border-radius":"20px",
+   "font-size" : "30px",
+   "padding" : "20px"};
+   console.log($scope.users);
+          };
+   }]);
+
+</script>
+</body>
+</html>
