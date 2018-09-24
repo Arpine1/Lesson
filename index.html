@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function</title>
+</head>
+<body>
+<script>
+    function myfunction(str) {
+        if (str == str.split('').reverse().join('')) { 
+            return true;
+        } else {
+            return  false;
+        }
+    }
+    console.log(myfunction('lalalalalalal'));
+	
+    function myfunction1(str) {
+        var len = str.length;
+        for (var i=0; i<Math.floor(len/2); i++) {
+            if(str[i]!==str[len-1-i]){
+                return false;
+            }
+        }
+        return true;
+    }
+    console.log(myfunction1('wwwwwrrrrrwwwww'))
+
+</script>
+</body>
+</html>
